@@ -3,8 +3,9 @@ import os
 import sys
 # 获取当前文件的目录
 curPath = os.path.abspath(os.path.dirname(__file__))
-print(curPath)
-sys.path.append('d:\code\py\model\deeplearning\stock_predict')
+index = curPath.index('stock_predict')
+sys.path.append(curPath[:index]+'stock_predict')
+index2 = curPath.index('deeplearning')
 
 from sklearn.metrics import mean_squared_error
 from pytorchtools import EarlyStopping
@@ -17,7 +18,7 @@ from torch.utils.data import Dataset, DataLoader
 import os
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
-data_path = 'C:\\Users\\25416\\my\\pytest\\paper1\\au.xlsx'
+data_path = curPath[:index2]+'data/au.xlsx'
 p_n = 39
 n = 3
 LR = 0.001

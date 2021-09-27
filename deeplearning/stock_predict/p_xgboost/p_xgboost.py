@@ -60,49 +60,6 @@ def train(data_dict, max_depth=20,
     # model.best_score
 
 
-class DataDict:
-    def __init__(self) -> None:
-        # 模型相关
-        self.data_path = 'C:\\Users\\25416\\my\\pytest\\paper1\\au.xlsx'
-        self.log = 'd:\\code\\py\\model\\deeplearning\\stock_predict\\p_xgboost\\mse.log'
-        p_n = 39
-        n = 3
-        LR = 0.001
-        EPOCH = 10000
-        batch_size = 20
-        train_end = -600
-        valid_end = -300
-        co = ["收盘", "涨幅", "成交量", "MA.MA1", "MA.MA2", "MA.MA3", "MA.MA4", "VOL.VOLUME",
-              "VOL.MAVOL1", "VOL.MAVOL2", "MACD.DIF", "MACD.DEA", "MACD.MACD"]
-
-        # 获取训练数据、原始数据、索引等信息
-        df_train, df_valid, df_test, df_all, df_index = data_source.readData(
-            co, 3, train_end=train_end)
-
-        # 标准化
-        ss = StandardScaler()
-        self.np_train = np.array(df_train)
-        self.np_std_train = ss.fit_transform(self.np_train)
-        self.np_std_train_mean = ss.mean_
-        self.np_std_train_std = np.sqrt(ss.var_)
-
-        self.np_valid = np.array(df_valid)
-        self.np_std_valid = (
-            self.np_valid-self.np_std_train_mean)/self.np_std_train_std
-        self.np_test = np.array(df_test)
-        self.np_std_test = (
-            self.np_test-self.np_std_train_mean)/self.np_std_train_std
-
-        self.x_train = self.np_std_train[:, :-1]
-        self.y_train = self.np_std_train[:, -1]
-
-        self.x_valid = self.np_std_valid[:, :-1]
-        self.y_valid = self.np_std_valid[:, -1]
-
-        self.x_test = self.np_std_test[:, :-1]
-        self.y_test = self.np_std_test[:, -1]
-
-
 if __name__ == '__main__':
-    data_dict = DataDict()
+    data_dict = data_source.DataDict()
     train(data_dict)
