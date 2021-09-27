@@ -1,17 +1,17 @@
 from sklearn.metrics import mean_squared_error
-from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.ensemble import RandomForestRegressor
 import __init__
 import data_source
+
+logpath = 'rf.log'
 
 
 def train(data_dict, max_leaf_nodes=10,
           n_estimators=100,
           max_depth=7,
           max_features=9,
-          learning_rate=0.05,
           min_samples_leaf=60,
           min_samples_split=1200,
-          subsample=0.7,
           min_weight_fraction_leaf=0
           ):
     # learning_rate=0.05
@@ -23,10 +23,9 @@ def train(data_dict, max_leaf_nodes=10,
     # subsample=0.7
     # max_leaf_nodes=10
     # min_weight_fraction_leaf=0
-    params = {'max_depth': max_depth, 'learning_rate': learning_rate, 'learning_rate': learning_rate,
-              'n_estimators': n_estimators, 'subsample': subsample, 'min_samples_leaf': min_samples_leaf, 'min_samples_split': min_samples_split,
+    params = {'max_depth': max_depth, 'n_estimators': n_estimators, 'min_samples_leaf': min_samples_leaf, 'min_samples_split': min_samples_split,
               'max_features': max_features, 'max_leaf_nodes': max_leaf_nodes, 'min_weight_fraction_leaf': min_weight_fraction_leaf}
-    model = GradientBoostingRegressor(
+    model = RandomForestRegressor(
         **params)               # 载入模型（模型命名为model)
     model.fit(data_dict.x_train, data_dict.y_train)            # 训练模型（训练集）
 
@@ -50,8 +49,8 @@ def train(data_dict, max_leaf_nodes=10,
                  f'valid_loss: {valid_mse:.5f}\n' +
                  f'test_loss: {test_mse:.5f}\n')
     print(print_msg)
-    # with open(data_dict.log, 'w') as f:
-    #     f.write(print_msg)
+    with open(logpath, 'a') as f:
+        f.write(print_msg)
     return valid_mse
 
     # model.best_score

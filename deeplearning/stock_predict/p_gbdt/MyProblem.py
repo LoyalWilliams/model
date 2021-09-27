@@ -50,7 +50,7 @@ class MyProblem(ea.Problem):  # 继承Problem父类
             outfile.write(str(best_params))
             outfile.write('\n')
         for i in range(0,n_estimators.shape[0]):
-            params = {'data_dict':self.data_dict,'max_depth': int(max_depth[i,0]), 'learning_rate': learning_rate[i,0], 'learning_rate': learning_rate[i,0],
+            params = {'data_dict':self.data_dict,'max_depth': int(max_depth[i,0]), 'learning_rate': learning_rate[i,0], 
               'n_estimators': int(n_estimators[i,0]), 'subsample': subsample[i,0], 'min_samples_leaf': min_samples_leaf[i,0], 'min_samples_split': min_samples_split[i,0],
               'max_features': int(max_features[i,0]), 'max_leaf_nodes': int(max_leaf_nodes[i,0]), 'min_weight_fraction_leaf': min_weight_fraction_leaf[i,0]}
             objv=p_gbdt.train(**params)

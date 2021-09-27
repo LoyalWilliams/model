@@ -11,6 +11,7 @@ import torch
 import torch.nn as nn
 import numpy as np
 from torch.utils.data import Dataset, DataLoader
+import __init__
 import data_source
 import torchvision.transforms as transforms
 import os

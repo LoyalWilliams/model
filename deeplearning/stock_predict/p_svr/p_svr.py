@@ -7,9 +7,10 @@ from sklearn.metrics import mean_squared_error
 import __init__
 from data_source import DataDict
 
+logpath = 'svr.log'
 
 
-def train(data_dict,kernel='rbf',
+def train(data_dict, kernel='rbf',
           C=1,
           degree=1,
           gamma=1,
@@ -41,7 +42,7 @@ def train(data_dict,kernel='rbf',
                  f'valid_loss: {valid_mse:.5f}\n' +
                  f'test_loss: {test_mse:.5f}\n')
     print(print_msg)
-    with open(data_dict.log, 'w') as f:
+    with open(logpath, 'a') as f:
         f.write(print_msg)
     return valid_mse
 

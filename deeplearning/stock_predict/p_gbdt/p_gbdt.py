@@ -3,6 +3,8 @@ from sklearn.ensemble import GradientBoostingRegressor
 import __init__
 import data_source
 
+logpath = 'gbdt.log'
+
 
 def train(data_dict, max_leaf_nodes=10,
           n_estimators=100,
@@ -50,8 +52,9 @@ def train(data_dict, max_leaf_nodes=10,
                  f'valid_loss: {valid_mse:.5f}\n' +
                  f'test_loss: {test_mse:.5f}\n')
     print(print_msg)
-    # with open(data_dict.log, 'w') as f:
-    #     f.write(print_msg)
+    with open(logpath, 'a') as f:
+        f.write(print_msg)
+
     return valid_mse
 
     # model.best_score

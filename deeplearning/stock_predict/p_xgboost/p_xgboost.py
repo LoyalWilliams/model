@@ -5,6 +5,8 @@ from xgboost import XGBRegressor
 import __init__
 import data_source
 
+logpath = 'xgboost.log'
+
 
 def train(data_dict, max_depth=20,
           min_child_weight=20,
@@ -51,7 +53,7 @@ def train(data_dict, max_depth=20,
                  f'valid_loss: {valid_mse:.5f}\n' +
                  f'test_loss: {test_mse:.5f}\n')
     print(print_msg)
-    with open(data_dict.log, 'w') as f:
+    with open(logpath, 'a') as f:
         f.write(print_msg)
     return valid_mse
 

@@ -8,7 +8,7 @@ if __name__ == '__main__':
     problem = MyProblem()  # 生成问题对象
     """==================================种群设置=============================="""
     Encoding = 'BG'  # 编码方式
-    NIND = 100  # 种群规模
+    NIND = 50  # 种群规模
 
 
     Field = ea.crtfld(Encoding, problem.varTypes, problem.ranges, problem.borders)  # 创建区域描述器
