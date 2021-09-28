@@ -2,13 +2,11 @@
 """MyProblem.py"""
 import numpy as np
 import geatpy as ea
-import matplotlib.pyplot as plt
 import numpy as np
-from sklearn import datasets,svm
 from sklearn.model_selection import train_test_split
-import joblib
 import p_xgboost
-import json
+import __init__
+import data_source
 
 class MyProblem(ea.Problem):  # 继承Problem父类
     def __init__(self):
@@ -25,7 +23,7 @@ class MyProblem(ea.Problem):  # 继承Problem父类
 
         # 调用父类构造方法完成实例化
         ea.Problem.__init__(self, name, M, maxormins, Dim, varTypes, lb, ub, lbin, ubin)
-        self.data_dict = p_xgboost.DataDict()
+        self.data_dict = data_source.DataDict()
     
 
     def aimFunc(self, pop):  # 目标函数
