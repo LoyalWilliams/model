@@ -19,7 +19,7 @@ class MyProblem(ea.Problem):  # 继承Problem父类
         # 初始化varTypes（决策变量的类型，元素为0表示对应的变量是连续的；1表示是离散的）
         varTypes = [1, 1, 0, 0, 0]
         lb = [0, 0, 0, 0, 0]  # 决策变量下界
-        ub = [3, 15, 100, 100, 100]  # 决策变量上界
+        ub = [2, 10, 100, 100, 100]  # 决策变量上界
         lbin = [1, 1, 0, 0, 1]   # 决策变量下边界（0表示不包含该变量的下边界，1表示包含）
         ubin = [1]*Dim  # 决策变量上边界（0表示不包含该变量的上边界，1表示包含）
 
@@ -27,7 +27,8 @@ class MyProblem(ea.Problem):  # 继承Problem父类
         ea.Problem.__init__(self, name, M, maxormins, Dim,
                             varTypes, lb, ub, lbin, ubin)
         self.data_dict = data_source.DataDict()
-        self.kernel = ['sigmoid', 'linear', 'poly', 'rbf']
+        # poly去掉
+        self.kernel = ['sigmoid', 'linear', 'rbf']
 
     def aimFunc(self, pop):  # 目标函数
         Vars = pop.Phen  # 得到决策变量矩阵
@@ -42,9 +43,9 @@ class MyProblem(ea.Problem):  # 继承Problem父类
 
         best_params = {'kernel': kernels, 'C': Cs,
                        'degree': degrees, 'gamma': gammas, 'coef0': coef0s}
-        with open('d:\code\py\model\deeplearning\stock_predict\svr_params.log', 'w') as outfile:
-            outfile.write(str(best_params))
-            outfile.write('\n')
+        # with open('d:\code\py\model\deeplearning\stock_predict\svr_params.log', 'w') as outfile:
+        #     outfile.write(str(best_params))
+        #     outfile.write('\n')
         for i in range(0, kernels.shape[0]):
             # print('############')
             # print(n_estimatorss[i])

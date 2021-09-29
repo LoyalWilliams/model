@@ -25,7 +25,7 @@ EPOCH = 1000
 batch_size = 20
 train_end = -600
 valid_end = -300
-patience = 1000
+patience = 20
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 
@@ -159,7 +159,7 @@ optimizer = torch.optim.Adam(rnn.parameters(), lr=LR)
 loss_func = nn.MSELoss()
 train_model(rnn, train_loader, valid_loader,
             optimizer, loss_func, patience, EPOCH)
-torch.save(rnn, 'model/m1')
+# torch.save(rnn, 'model/m1')
 # rnn=torch.load('D:/code/py/model/model/m1')
 
 # 保存整个网络
