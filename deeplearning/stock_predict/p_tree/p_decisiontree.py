@@ -1,38 +1,23 @@
 from sklearn.metrics import mean_squared_error
-from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.tree import DecisionTreeRegressor
 import __init__
 import data_source
 
-logpath = 'gbdt.log'
+logpath = 'decisiontree.log'
 
 def train(data_dict, max_leaf_nodes=10,
-          n_estimators=100,
           max_depth=7,
           max_features=9,
-          learning_rate=0.05,
           min_samples_leaf=60,
           min_samples_split=1200,
-          subsample=0.7,
           min_weight_fraction_leaf=0
           ):
-    # learning_rate=0.05
-    # n_estimators=1
-    # max_depth=9
-    # min_samples_leaf =60
-    # min_samples_split =1200
-    # max_features=9
-    # subsample=0.7
-    # max_leaf_nodes=10
-    # min_weight_fraction_leaf=0
-    params = {'max_depth': max_depth, 'learning_rate': learning_rate, 'learning_rate': learning_rate,
-              'n_estimators': n_estimators, 'subsample': subsample, 'min_samples_leaf': min_samples_leaf, 'min_samples_split': min_samples_split,
+    params = {'max_depth': max_depth, 'min_samples_leaf': min_samples_leaf, 'min_samples_split': min_samples_split,
               'max_features': max_features, 'max_leaf_nodes': max_leaf_nodes, 'min_weight_fraction_leaf': min_weight_fraction_leaf}
-    model = GradientBoostingRegressor(
+    model = DecisionTreeRegressor(
         **params)               # 载入模型（模型命名为model)
     model.fit(data_dict.x_train, data_dict.y_train)            # 训练模型（训练集）
 
-    # print(np_std_train.shape)
-    # print(np_std_train_std.shape)
     # 模型预测
     train_predict = model.predict(
         data_dict.x_train)*data_dict.np_std_train_std[-1]+data_dict.np_std_train_mean[-1]
@@ -40,7 +25,7 @@ def train(data_dict, max_leaf_nodes=10,
         data_dict.x_valid)*data_dict.np_std_train_std[-1]+data_dict.np_std_train_mean[-1]
     test_predict = model.predict(
         data_dict.x_test)*data_dict.np_std_train_std[-1]+data_dict.np_std_train_mean[-1]
-    print(train_predict)
+#     print(train_predict)
 
     # 模型评估 mse
     train_mse = mean_squared_error(data_dict.np_train[:, -1], train_predict)

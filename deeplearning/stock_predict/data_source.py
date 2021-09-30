@@ -51,7 +51,7 @@ def generate_data_by_n_days(series, n, co, obv):
 
 
 # 参数n与上相同。train_end表示的是后面多少个数据作为测试集。
-def readData(column, n=3, train_end=-600, valid_end=-300):
+def readData(column, n=3, train_end=-600, valid_end=-300, obv="涨幅"):
     ###########################################
     df = pd.read_excel(
         data_path, index_col=0)
@@ -66,7 +66,7 @@ def readData(column, n=3, train_end=-600, valid_end=-300):
     df_column = df[co].copy()
 
     # 生成训练数据
-    df_generate = generate_data_by_n_days(df_column, n, co, "涨幅")
+    df_generate = generate_data_by_n_days(df_column, n, co, obv)
     # 拆分为训练集和测试集,验证集
     df_train, df_valid, df_test = df_generate[:
                                               train_end], df_generate[train_end:valid_end], df_generate[valid_end:]
@@ -116,10 +116,8 @@ def create_datasets(batch_size=20):
 
 
 class DataDict:
-    def __init__(self) -> None:
+    def __init__(self, obv="涨幅") -> None:
         # 模型相关
-        self.data_path = 'C:\\Users\\25416\\my\\pytest\\paper1\\au.xlsx'
-        self.log = 'd:\\code\\py\\model\\deeplearning\\stock_predict\\p_xgboost\\mse.log'
         p_n = 39
         n = 3
         LR = 0.001
@@ -132,7 +130,7 @@ class DataDict:
 
         # 获取训练数据、原始数据、索引等信息
         df_train, df_valid, df_test, df_all, df_index = readData(
-            co, 3, train_end=train_end)
+            co, 3, train_end=train_end, obv=obv)
 
         # 标准化
         ss = StandardScaler()
