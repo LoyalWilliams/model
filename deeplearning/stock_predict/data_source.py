@@ -154,6 +154,10 @@ class DataDict:
 
         self.x_test = self.np_std_test[:, :-1]
         self.y_test = self.np_std_test[:, -1]
+        self.df_index=df_index
+        self.train_index=df_index[0:train_end]
+        self.valid_index=df_index[train_end:valid_end]
+        self.test_index=df_index[valid_end:]
 
 
 # torch.save(rnn, 'model/m1')

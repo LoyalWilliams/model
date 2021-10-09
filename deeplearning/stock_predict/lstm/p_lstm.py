@@ -53,6 +53,9 @@ class RNN(nn.Module):
 # 7.8.5 训练模型
 train_loader, test_loader, valid_loader = data_source.create_datasets()
 
+data_dict = data_source.DataDict()
+# train_loader, test_loader, valid_loader
+
 # 记录损失值，并用tensorboardx在web上展示
 # tensorboard --logdir ./logs
 # writer = SummaryWriter(log_dir='logs')
@@ -205,3 +208,18 @@ train_model(rnn, train_loader, valid_loader,
 # mean_squared_error(df_all[train_end:train_end+100]
 #                    ['收盘-0']+df_all[train_end:train_end+100].y, df_all[train_end:train_end+100]['收盘-0'] +
 #                    generate_data_test[train_end:train_end+100])
+
+test_loss=[]
+predict=[]
+test_x=[]
+data_dict.np_std_train_mean
+# rnn=torch.load('D:/code/py/model/model/m1')
+# i=0
+# test_data=data_dict.np_std_test[0:100]
+# x=torch.unsqueeze(torch.tensor(test_data[:,0:-1]).float(), dim=1)
+# predict=rnn(x.to(device)).view(-1).detach().cpu().numpy()
+
+# plt.clf()
+# plt.plot(data_dict.test_index[0:100],predict)
+
+# plt.show()
