@@ -7,6 +7,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
 from sklearn.preprocessing import StandardScaler
 import pandas as pd
+from sklearn.inspection import permutation_importance
 
 logpath = 'rf.log'
 
@@ -15,10 +16,13 @@ vaild_end = -197
 
 
 class DataDict:
-    def __init__(self, obv="涨幅") -> None:
+    def __init__(self) -> None:
         # 模型相关
-        
         df_all = pd.read_excel('data/clean2.xlsx')
+        # 筛选变量列
+        sel_col=df_all.columns[[0, 1, 43, 79, 92, 94, 95, 97, 98, 116, 154, 176, 188, 200, 202, 205, 214, 247, 250, 284, 285, 302, 308, 311,322]]
+        df_all=df_all[sel_col]
+
         df_all=df_all.sample(frac=1)
         df_train=df_all[:train_end]
         df_valid=df_all[train_end:vaild_end]
@@ -87,7 +91,7 @@ def train(data_dict, max_leaf_nodes=10,
     test_predict = model.predict(
         data_dict.x_test)*data_dict.np_std_train_std[-1]+data_dict.np_std_train_mean[-1]
     # print(train_predict)
-
+    
     # 模型评估 mse
     train_mse = mean_squared_error(data_dict.np_train[:, -1], train_predict)
     valid_mse = mean_squared_error(data_dict.np_valid[:, -1], valid_predict)
@@ -106,10 +110,27 @@ def train(data_dict, max_leaf_nodes=10,
 
 if __name__ == '__main__':
     data_dict = DataDict()
-    train(data_dict)
+    # learning_rate=0.05
+    n_estimators=457
+    max_depth=27
+    min_samples_leaf =0.0006103515625
+    min_samples_split =0.01171875
+    max_features=13
+    max_leaf_nodes=49
+    min_weight_fraction_leaf=0.00042729825418141864
+    train(data_dict,n_estimators=n_estimators,max_depth=max_depth,min_samples_leaf=min_samples_leaf,min_samples_split=min_samples_split
+    ,max_features=max_features,max_leaf_nodes=max_leaf_nodes)
     # model = RandomForestRegressor()               # 载入模型（模型命名为model)
     # model.fit(data_dict.x_train, data_dict.y_train)            # 训练模型（训练集）
     # model.get_params
+
+# data_dict
+# result = permutation_importance(
+# model, data_dict.x_train, data_dict.y_train, n_repeats=10, random_state=42, n_jobs=2)
+# zip(sel_col,result.importances_mean)
+# sorted(zip(result.importances_mean,sel_col),key=lambda x:-x[0])
+
+
 
 # X, y = make_hastie_10_2(random_state=0)
 # clf = GradientBoostingClassifier(n_estimators=100, learning_rate=1.0,

@@ -27,3 +27,12 @@ df_all.to_excel('data/clean2.xlsx',index=False)
 # 数据标准化
 std_data=(df_all - np.mean(df_all)) / np.std(df_all)
 std_data.to_excel('data/std-clean.xlsx',index=False)
+
+
+
+# 整合问题三的数据
+df_clean = pd.read_excel('data/clean2.xlsx')
+df_ADMET = pd.read_excel('data/ADMET.xlsx', sheet_name='training')
+df_all=pd.concat([df_clean, df_ADMET], axis=1)
+# 打乱顺序，保存
+df_all.sample(frac=1).to_excel('data/q3_data.xlsx',index=False)
