@@ -89,4 +89,12 @@ def train(data_dict, max_leaf_nodes=10,
 
 if __name__ == '__main__':
     data_dict = DataDict()
-    train(data_dict)
+    max_leaf_nodes = 27
+    max_depth = 45
+    max_features = 16
+    min_samples_leaf = 0.032958984375
+    min_samples_split = 0.0093994140625
+    min_weight_fraction_leaf = 0.033390306433890855
+
+    train(data_dict,max_leaf_nodes=max_leaf_nodes,max_features=max_features,min_samples_leaf=min_samples_leaf,
+    min_samples_split=min_samples_split,min_weight_fraction_leaf=min_weight_fraction_leaf)

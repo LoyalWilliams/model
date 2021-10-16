@@ -90,4 +90,10 @@ def train(data_dict, kernel='rbf',
 
 if __name__ == '__main__':
     data_dict = DataDict()
-    train(data_dict)
+    kernel='linear'
+    degree=1
+    C     =79.19960021972656
+    gamma =93.1406021118164
+    coef0 =81.6318336790406
+    train(data_dict,kernel=kernel,degree=degree,C=C,gamma=gamma,coef0=coef0)
+    # train(data_dict)

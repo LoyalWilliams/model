@@ -100,4 +100,13 @@ def train(data_dict, max_leaf_nodes=10,
 
 if __name__ == '__main__':
     data_dict = DataDict()
-    train(data_dict)
+    max_leaf_nodes = 50
+    n_estimators = 529
+    max_depth = 25
+    max_features = 9
+    min_samples_leaf = 0.00140380859375
+    min_samples_split = 0.00445556640625
+    min_weight_fraction_leaf = 0.004150897326333781
+    train(data_dict,max_leaf_nodes=max_leaf_nodes,n_estimators=n_estimators,max_depth=max_depth,max_features=max_features,
+    min_samples_leaf=min_samples_leaf,min_samples_split=min_samples_split,min_weight_fraction_leaf=min_weight_fraction_leaf)
+    

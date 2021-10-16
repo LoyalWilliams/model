@@ -88,5 +88,46 @@ def train(data_dict, kernel='rbf',
 
 
 if __name__ == '__main__':
-    data_dict = DataDict('MN')
-    train(data_dict)
+    # data_dict = DataDict('CYP3A4')
+    # kernel='linear'
+    # degree=8
+    # C     =2.481555938720703
+    # gamma =48.54907989501953
+    # coef0 =35.8707770068903
+    # train(data_dict,kernel=kernel,degree=degree,C=C,gamma=gamma,coef0=coef0)
+   
+
+    # data_dict = DataDict('MN')
+    # kernel='linear'
+    # degree=5
+    # C     =5.950641632080078
+    # gamma =75.25835037231445
+    # coef0 =84.26493097775553
+    # train(data_dict,kernel=kernel,degree=degree,C=C,gamma=gamma,coef0=coef0)
+    
+    # data_dict = DataDict('HOB')
+    # kernel='linear'
+    # degree=3
+    # C     =3.6070823669433594
+    # gamma =40.64168930053711
+    # coef0 =67.76644493717664
+    # train(data_dict,kernel=kernel,degree=degree,C=C,gamma=gamma,coef0=coef0)
+   
+
+    # data_dict = DataDict('Caco-2')
+    # kernel='linear'
+    # degree=1
+    # C     =83.84809494018555
+    # gamma =44.15740966796875
+    # coef0 =60.71516105190378
+    # train(data_dict,kernel=kernel,degree=degree,C=C,gamma=gamma,coef0=coef0)
+   
+
+    data_dict = DataDict('hERG')
+    kernel='linear'
+    degree=8
+    C     =1.3010025024414062
+    gamma =91.88404083251953
+    coef0 =53.59454497770784
+    train(data_dict,kernel=kernel,degree=degree,C=C,gamma=gamma,coef0=coef0)
+   
