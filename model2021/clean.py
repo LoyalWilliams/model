@@ -28,7 +28,9 @@ df_all.to_excel('data/clean2.xlsx',index=False)
 std_data=(df_all - np.mean(df_all)) / np.std(df_all)
 std_data.to_excel('data/std-clean.xlsx',index=False)
 
-
+# 第2题数据
+df_all = pd.read_excel('data/clean2.xlsx')
+df_all.sample(frac=1).to_excel('data/q2_data.xlsx',index=False)
 
 # 整合问题三的数据
 df_clean = pd.read_excel('data/clean2.xlsx')
