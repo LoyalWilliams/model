@@ -131,10 +131,15 @@ if __name__ == '__main__':
     model, data_dict.x_train, data_dict.y_train, n_repeats=20, random_state=42, n_jobs=2)
     df_all = pd.read_excel('data/clean2.xlsx')
     # 筛选变量列
-    sel_col=df_all.columns[[0, 1, 43, 79, 92, 94, 95, 97, 98, 116, 154, 176, 188, 200, 202, 205, 214, 247, 250, 284, 285, 302, 308, 311,322]]
+    # sel_col=df_all.columns[[0, 1, 43, 79, 92, 94, 95, 97, 98, 116, 154, 176, 188, 200, 202, 205, 214, 247, 250, 284, 285, 302, 308, 311,322]]
+
+    sel_col=df_all.columns[[0, 1, 43, 79, 92, 94, 95, 97, 98, 116, 154, 176, 188, 200, 202, 205, 214, 247, 250, 284, 285, 302, 308, 311]]
     zip(sel_col,result.importances_mean)
     sorted(zip(result.importances_mean,sel_col),key=lambda x:-x[0])
     dcor(df_all.drop(np.array(sel_col.columns),axis=1))
+
+
+    importances=dict(zip(sel_col,result.importances_mean))
 
 
 
@@ -185,3 +190,33 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 # sns.heatmap(df)
+b=distcorr(np.array(df_all[sel_col]))
+a_b=np.where(b>0.8)
+cor_var=[]
+for i in range(len(a_b[0])):
+    if a_b[1][i]>a_b[0][i]:
+        print(str(a_b[0][i])+','+str(a_b[1][i]))
+        cor_var.append((a_b[0][i],a_b[1][i]))
+
+ # 筛选变量列
+sel_col=df_all.columns[[0, 1, 43, 79, 92, 94, 95, 97, 98, 116, 154, 176, 188, 200, 202, 205, 214, 247, 250, 284, 285, 302, 308, 311]]
+zip(sel_col,result.importances_mean)
+
+drop_col=[]
+for a,b in cor_var:
+    print(importances[sel_col[a]] < importances[sel_col[b]])
+    if importances[sel_col[a]] < importances[sel_col[b]]:
+        drop_col.append(sel_col[a])
+    else:
+        drop_col.append(sel_col[b])
+
+# [:,1].shape
+sel_col2=list(set(sel_col)-set(drop_col))
+b2=distcorr(np.array(df_all[sel_col2]))
+b_df=pd.DataFrame(b2)
+for i in range(len(sel_col2)):
+    b_df.rename(columns={i:sel_col2[i]},inplace=True)
+sns.heatmap(b_df)
+
+#######################################################
+# sel_col2=['ALogP','minsOH','nRotB','maxaaCH','MDEC-22','VP-1','MDEC-23','hmin','nBondsM','nF10Ring','nHBint4','nHBint6','maxsCH3','ETA_dBetaP','minHBint3','nHBint7','maxwHBa', 'nHBint10','SwHBa']
