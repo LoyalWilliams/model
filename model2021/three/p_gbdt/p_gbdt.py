@@ -15,7 +15,7 @@ class DataDict:
         # 模型相关
         df_all = pd.read_excel('data/q3_data.xlsx')
         # 筛选变量列
-        drop_sel=set(['SMILES','Caco-2','CYP3A4','hERG','HOB','MN'])
+        drop_sel=set(['SMILES','Caco-2','CYP3A4','hERG','HOB','MN','pIC50'])
         self.np_obv=np.array(df_all[obv])
         df_all=df_all.drop(drop_sel, axis=1)
         df_train=df_all[:train_end]

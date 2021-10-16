@@ -4,7 +4,7 @@ from sklearn.metrics import mean_squared_error
 from xgboost import XGBRegressor
 from sklearn.metrics import accuracy_score
 import pandas as pd
-
+import pickle
 
 logpath = 'xgboost.log'
 
@@ -77,6 +77,13 @@ def train(data_dict, max_depth=20,
               'reg_alpha': reg_alpha, 'reg_lambda': reg_lambda}
     model = XGBRegressor(**params)               # 载入模型（模型命名为model)
     model.fit(data_dict.x_train, data_dict.y_train)            # 训练模型（训练集）
+    # save model to file
+    pickle.dump(model, open("model/q2_xg_model", "wb"))
+
+    # load model from file
+    loaded_model = pickle.load(open("model/q2_xg_model", "rb"))
+
+
 
     # 模型预测
     train_predict = model.predict(

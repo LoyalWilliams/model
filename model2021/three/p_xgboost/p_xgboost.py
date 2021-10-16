@@ -4,9 +4,7 @@ from sklearn.metrics import mean_squared_error
 from xgboost import XGBClassifier
 from sklearn.metrics import accuracy_score
 import pandas as pd
-
-
-logpath = 'xgboost.log'
+import pickle
 
 
 train_end = -395
@@ -17,7 +15,7 @@ class DataDict:
         # 模型相关
         df_all = pd.read_excel('data/q3_data.xlsx')
         # 筛选变量列
-        drop_sel=set(['SMILES','Caco-2','CYP3A4','hERG','HOB','MN'])
+        drop_sel=set(['SMILES','Caco-2','CYP3A4','hERG','HOB','MN','pIC50'])
         self.np_obv=np.array(df_all[obv])
         df_all=df_all.drop(drop_sel, axis=1)
         df_train=df_all[:train_end]
@@ -77,6 +75,12 @@ def train(data_dict, max_depth=20,
               'reg_alpha': reg_alpha, 'reg_lambda': reg_lambda}
     model = XGBClassifier(**params)               # 载入模型（模型命名为model)
     model.fit(data_dict.x_train, data_dict.y_train)            # 训练模型（训练集）
+
+    # pickle.dump(model, open("model/q3_CYP3A4_model", "wb"))
+    # pickle.dump(model, open("model/q3_Caco-2_model", "wb"))
+    # pickle.dump(model, open("model/q3_hERG_model", "wb"))
+    # pickle.dump(model, open("model/q3_MN_model", "wb"))
+    pickle.dump(model, open("model/q3_HOB_model", "wb"))
     # print(np_std_train.shape)
     # print(np_std_train_std.shape)
     # 模型预测

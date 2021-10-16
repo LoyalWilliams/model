@@ -38,3 +38,9 @@ df_ADMET = pd.read_excel('data/ADMET.xlsx', sheet_name='training')
 df_all=pd.concat([df_clean, df_ADMET], axis=1)
 # 打乱顺序，保存
 df_all.sample(frac=1).to_excel('data/q3_data.xlsx',index=False)
+
+
+
+df1_test = pd.read_excel('data/ERα_activity.xlsx', sheet_name='test')
+df2_test = pd.read_excel('data/Molecular_Descriptor.xlsx', sheet_name='test')
+df_ADMET_test = pd.read_excel('data/ADMET.xlsx', sheet_name='test')
