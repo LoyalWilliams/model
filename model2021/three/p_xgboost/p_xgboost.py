@@ -106,68 +106,68 @@ def train(data_dict, max_depth=20,
 
 if __name__ == '__main__':
     # data_dict = DataDict('CYP3A4')
-    # max_depths        = 77
-    # n_estimatorss     = 888
-    # min_child_weights = 10.420648272126282
-    # learning_rates    = 0.36590576171875
-    # subsamples        = 0.646240234375
-    # colsample_bytrees = 0.4742431640625
-    # gammas            = 2.6152901279072873
-    # reg_alphas        = 1.3111164517076557
-    # reg_lambdas       = 5.986122078407587
+    # max_depths        =98
+    # n_estimatorss     =835
+    # min_child_weights =6.582056358552393
+    # learning_rates    =0.88189697265625
+    # subsamples        =0.507080078125
+    # colsample_bytrees =0.33221435546875
+    # gammas            =9.583776793582128
+    # reg_alphas        =1.4049583624205109
+    # reg_lambdas       =9.03194058204873
     # train(data_dict, max_depth=max_depths, n_estimators=n_estimatorss, min_child_weight=min_child_weights, learning_rate=learning_rates,
     #       subsample=subsamples, colsample_bytree=colsample_bytrees, gamma=gammas, reg_alpha=reg_alphas, reg_lambda=reg_lambdas)
 
     # data_dict = DataDict('Caco-2')
-    # max_depths        =45
-    # n_estimatorss     =903
-    # min_child_weights =4.946536813876396
-    # learning_rates    =0.86822509765625
-    # subsamples        =0.627197265625
-    # colsample_bytrees =0.251220703125
-    # gammas            =0.3749861716696612
-    # reg_alphas        =5.78501047138394
-    # reg_lambdas       =18.628458513101627
+    # max_depths        =32
+    # n_estimatorss     =680
+    # min_child_weights =5.196324143692565
+    # learning_rates    =0.5970458984375
+    # subsamples        =0.8787841796875
+    # colsample_bytrees =0.7271728515625
+    # gammas            =2.6043800521089633
+    # reg_alphas        =0.8056671358762202
+    # reg_lambdas       =14.394738749461172
     # train(data_dict, max_depth=max_depths, n_estimators=n_estimatorss, min_child_weight=min_child_weights, learning_rate=learning_rates,
     #       subsample=subsamples, colsample_bytree=colsample_bytrees, gamma=gammas, reg_alpha=reg_alphas, reg_lambda=reg_lambdas)
 
     # data_dict = DataDict('hERG')
-    # max_depths        =72
-    # n_estimatorss     =814
-    # min_child_weights =1.7938300851062206
-    # learning_rates    =0.8089599609375
-    # subsamples        =0.3648681640625
-    # colsample_bytrees =0.7520751953125
-    # gammas            =0.2176674563120129
-    # reg_alphas        =6.5381871726500425
-    # reg_lambdas       =10.75565626394754
+    # max_depths        =88
+    # n_estimatorss     =282
+    # min_child_weights =1.7330998729700964
+    # learning_rates    =0.87445068359375
+    # subsamples        =0.93231201171875
+    # colsample_bytrees =0.315185546875
+    # gammas            =0.29213063099148173
+    # reg_alphas        =2.423791594663981
+    # reg_lambdas       =11.038631586576791
     # train(data_dict, max_depth=max_depths, n_estimators=n_estimatorss, min_child_weight=min_child_weights, learning_rate=learning_rates,
     #       subsample=subsamples, colsample_bytree=colsample_bytrees, gamma=gammas, reg_alpha=reg_alphas, reg_lambda=reg_lambdas)
 
-    # data_dict = DataDict('MN')    
-    # max_depths        =13
-    # n_estimatorss     =901
-    # min_child_weights =0.450364877185353
-    # learning_rates    =0.26324462890625
-    # subsamples        =0.90228271484375
-    # colsample_bytrees =0.81109619140625
-    # gammas            =0.2780161972663775
-    # reg_alphas        =0.40718233941016924
-    # reg_lambdas       =18.638224175354672
+    # data_dict = DataDict('MN')
+    # max_depths        =28
+    # n_estimatorss     =726
+    # min_child_weights =9.282872325410176
+    # learning_rates    =0.75
+    # subsamples        =0.6002197265625
+    # colsample_bytrees =0.5777587890625
+    # gammas            =1.8197701254658716
+    # reg_alphas        =0.05920432740908588
+    # reg_lambdas       =10.64609774054619
     # train(data_dict, max_depth=max_depths, n_estimators=n_estimatorss, min_child_weight=min_child_weights, learning_rate=learning_rates,
     #       subsample=subsamples, colsample_bytree=colsample_bytrees, gamma=gammas, reg_alpha=reg_alphas, reg_lambda=reg_lambdas)
 
 
     data_dict = DataDict('HOB') 
-    max_depths        =35
-    n_estimatorss     =619
-    min_child_weights =1.9396283707747297
-    learning_rates    =0.5322265625
-    subsamples        =0.93365478515625
-    colsample_bytrees =0.81610107421875
-    gammas            =3.172314347512617
-    reg_alphas        =1.5100918201134494
-    reg_lambdas       =2.9509084736193603
+    max_depths        =23
+    n_estimatorss     =811
+    min_child_weights =16.229691427961075
+    learning_rates    =0.91937255859375
+    subsamples        =0.87701416015625
+    colsample_bytrees =0.0101318359375
+    gammas            =0.5423757262257622
+    reg_alphas        =7.140224991703001
+    reg_lambdas       =17.88855700896076
     train(data_dict, max_depth=max_depths, n_estimators=n_estimatorss, min_child_weight=min_child_weights, learning_rate=learning_rates,
           subsample=subsamples, colsample_bytree=colsample_bytrees, gamma=gammas, reg_alpha=reg_alphas, reg_lambda=reg_lambdas)
 

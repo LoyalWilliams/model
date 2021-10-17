@@ -68,11 +68,13 @@ sel_col2 = ['ALogP', 'minsOH', 'nRotB', 'maxaaCH', 'MDEC-22', 'VP-1', 'MDEC-23',
             'nBondsM', 'nF10Ring', 'nHBint4', 'nHBint6', 'maxsCH3', 'ETA_dBetaP', 'minHBint3',
             'nHBint7', 'maxwHBa', 'nHBint10', 'SwHBa']
 
+# 标准化
 test2x=np.array(df2_test[sel_col2])
 
+test2x_std=(test2x-data_dict.np_std_train_mean[:-1])/data_dict.np_std_train_std[:-1]
 # 第二题 模型预测
 train_predict = q2_xg_model.predict(
-    test2x)*data_dict.np_std_train_std[-1]+data_dict.np_std_train_mean[-1]
+    test2x_std)*data_dict.np_std_train_std[-1]+data_dict.np_std_train_mean[-1]
 
 res=pd.DataFrame()
 res['IC50_nM']=np.power(10,9-train_predict)

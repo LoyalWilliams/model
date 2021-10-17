@@ -59,7 +59,7 @@ df2_test = pd.read_excel('data/Molecular_Descriptor.xlsx', sheet_name='test')
 
 df_all = pd.read_excel('data/q3_data.xlsx')
 # 筛选变量列
-drop_sel=set(['SMILES','Caco-2','CYP3A4','hERG','HOB','MN'])
+drop_sel=set(['SMILES','Caco-2','CYP3A4','hERG','HOB','MN','pIC50'])
 sel_col=set(df_all.columns)-drop_sel
 
 # 筛选变量列
@@ -68,14 +68,35 @@ sel_col=set(df_all.columns)-drop_sel
 
 test2x=np.array(df2_test[sel_col])
 
+# 标准化
+data_dict=DataDict('HOB')
+test2x_std=(test2x-data_dict.np_std_train_mean)/data_dict.np_std_train_std
+
 # 第3题 模型预测
-train_predict = q3_Caco_model.predict(test2x)
 
+# load model from file
+q3_CYP3A4_model=pickle.load(open("D:/code/py/model/model/q3_CYP3A4_model", "rb"))
+q3_Caco_model=pickle.load(open("D:/code/py/model/model/q3_Caco-2_model", "rb"))
+q3_hERG_model=pickle.load(open("D:/code/py/model/model/q3_hERG_model", "rb"))
+q3_MN_model=pickle.load(open("D:/code/py/model/model/q3_MN_model", "rb"))
+q3_HOB_model=pickle.load(open("D:/code/py/model/model/q3_HOB_model", "rb"))
+
+CYP3A4_predict = q3_CYP3A4_model.predict(test2x_std)
+Caco_predict = q3_Caco_model.predict(test2x_std)
+hERG_predict = q3_hERG_model.predict(test2x_std)
+MN_predict = q3_MN_model.predict(test2x_std)
+HOB_predict = q3_HOB_model.predict(test2x_std)
+
+
+# Caco-2	CYP3A4	hERG	HOB	MN
+# 
 res=pd.DataFrame()
-res['IC50_nM']=np.power(10,9-train_predict)
-res['pIC50']=train_predict
+res['Caco-2']=Caco_predict
+res['CYP3A4']=CYP3A4_predict
+res['hERG']=hERG_predict
+res['HOB']=HOB_predict
+res['MN']=MN_predict
 res.to_excel('q3_answer.xlsx',index=False)
-
 
 
 

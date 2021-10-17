@@ -44,3 +44,16 @@ df_all.sample(frac=1).to_excel('data/q3_data.xlsx',index=False)
 df1_test = pd.read_excel('data/ERα_activity.xlsx', sheet_name='test')
 df2_test = pd.read_excel('data/Molecular_Descriptor.xlsx', sheet_name='test')
 df_ADMET_test = pd.read_excel('data/ADMET.xlsx', sheet_name='test')
+
+
+
+# 第2题数据
+df_all = pd.read_excel('data/clean2.xlsx')
+df_all.sample(frac=1).to_excel('data/q2_data.xlsx',index=False)
+
+# 整合问题4的数据
+df_clean = pd.read_excel('data/clean2.xlsx').drop(['pIC50'], axis=1)
+df_ADMET = pd.read_excel('data/ADMET.xlsx', sheet_name='training')
+df_clean['y']=df_ADMET['Caco-2']+df_ADMET['CYP3A4']+df_ADMET['hERG']+df_ADMET['HOB']+df_ADMET['MN']
+df_clean.to_excel('data/q4_data.xlsx',index=False)
+
